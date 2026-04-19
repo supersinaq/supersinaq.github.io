@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Sınaq — Azərbaycanın Ən Yaxşı Test Platforması</title>
+<meta name="description" content="Super Sınaq ilə biliklərini sına, öyrən, inkişaf et. Yüzlərlə test, premium məzmun, real-time rəqabət.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,700;0,900;1,900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p: #00e5ff;
+  --a: #7c4dff;
+  --o: #ff6b35;
+  --g: #00e676;
+  --y: #ffab00;
+  --bg: #050a14;
+  --bg2: #0a1628;
+  --card: #0d1b33;
+  --text: #e8f4fd;
+  --text2: #8bacc8;
+  --border: rgba(0,229,255,0.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Exo 2',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:default;
+}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);
+  background-size:50px 50px;pointer-events:none;z-index:0;
+}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:64px;
+  background:rgba(5,10,20,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-size:18px;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(135deg,var(--p),var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{
+  color:var(--text2);text-decoration:none;font-size:13px;font-weight:600;
+  padding:7px 14px;border-radius:8px;transition:all 0.2s;
+}
+.nav-links a:hover{color:var(--text);background:rgba(0,229,255,0.08);}
+.nav-dl{
+  background:linear-gradient(135deg,var(--p),#0094aa);
+  color:#000;font-size:13px;font-weight:800;
+  padding:9px 20px;border-radius:10px;text-decoration:none;
+  transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px;
+}
+.nav-dl:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,229,255,0.4);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:100px 5% 80px;text-align:center;
+  position:relative;z-index:1;
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);
+  border-radius:40px;padding:6px 16px;font-size:12px;font-weight:700;
+  color:var(--p);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeDown 0.8s ease both;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-title{
+  font-size:clamp(48px,8vw,96px);
+  font-weight:900;line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:12px;
+  animation:fadeDown 0.8s ease 0.1s both;
+}
+.hero-title span{
+  background:linear-gradient(135deg,var(--p) 0%,var(--a) 45%,var(--o) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+  filter:drop-shadow(0 0 40px rgba(0,229,255,0.3));
+}
+
+.hero-sub{
+  font-size:clamp(16px,2.5vw,22px);color:var(--text2);
+  max-width:600px;line-height:1.7;margin-bottom:44px;
+  animation:fadeDown 0.8s ease 0.2s both;
+}
+
+.hero-btns{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
+  animation:fadeDown 0.8s ease 0.3s both;margin-bottom:64px;
+}
+.btn-main{
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--p),#0094aa);
+  color:#000;font-size:16px;font-weight:800;
+  padding:16px 32px;border-radius:14px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(0,229,255,0.4);
+  transition:all 0.2s;letter-spacing:0.3px;
+}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,229,255,0.55);}
+.btn-main:active{transform:scale(0.98);}
+.btn-ghost{
+  display:flex;align-items:center;gap:8px;
+  color:var(--text2);font-size:15px;font-weight:600;
+  padding:15px 28px;border-radius:14px;text-decoration:none;
+  border:1.5px solid var(--border);transition:all 0.2s;
+}
+.btn-ghost:hover{color:var(--text);border-color:rgba(0,229,255,0.35);background:rgba(0,229,255,0.05);}
+
+/* MOCKUP */
+.hero-mockup{
+  position:relative;width:100%;max-width:340px;
+  animation:floatUp 0.9s ease 0.4s both;
+}
+.mockup-phone{
+  background:var(--card);border:2px solid rgba(0,229,255,0.2);
+  border-radius:36px;padding:20px;
+  box-shadow:0 40px 100px rgba(0,0,0,0.6),0 0 60px rgba(0,229,255,0.08);
+  position:relative;overflow:hidden;
+}
+.mockup-phone::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(0,229,255,0.08) 0%,transparent 60%);
+}
+.mockup-notch{
+  width:80px;height:8px;background:var(--bg2);
+  border-radius:10px;margin:0 auto 18px;
+}
+.mockup-logo{
+  font-size:22px;font-weight:900;text-align:center;margin-bottom:4px;
+  background:linear-gradient(135deg,var(--p),var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.mockup-sub{font-size:9px;color:var(--text2);text-align:center;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;}
+.mockup-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;padding:14px;margin-bottom:10px;
+  display:flex;align-items:center;gap:12px;
+}
+.mockup-card-icon{font-size:26px;flex-shrink:0;}
+.mockup-card-bar{flex:1;}
+.mockup-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.mockup-card-meta{font-size:10px;color:var(--text2);}
+.mockup-card-prog{height:3px;background:var(--bg);border-radius:4px;margin-top:6px;}
+.mockup-card-prog-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--p),var(--a));}
+.mockup-stats{display:flex;gap:8px;}
+.mockup-stat{
+  flex:1;background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px;padding:10px;text-align:center;
+}
+.mockup-stat-num{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--p);}
+.mockup-stat-label{font-size:9px;color:var(--text2);}
+
+/* glow rings */
+.glow-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(0,229,255,0.08);
+  animation:ringPulse 4s ease-in-out infinite;
+  pointer-events:none;
+}
+.glow-ring-1{width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.glow-ring-2{width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:1s;}
+.glow-ring-3{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:2s;}
+@keyframes ringPulse{0%,100%{opacity:0.5}50%{opacity:0.15}}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  position:relative;z-index:1;
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0;
+  background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:0;
+}
+.stat-item{
+  flex:1;min-width:140px;text-align:center;padding:28px 20px;
+  border-right:1px solid var(--border);
+}
+.stat-item:last-child{border-right:none;}
+.stat-num{
+  font-family:'Rajdhani',sans-serif;
+  font-size:40px;font-weight:700;line-height:1;
+  background:linear-gradient(135deg,var(--p),var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-label{font-size:12px;color:var(--text2);margin-top:4px;font-weight:600;letter-spacing:1px;}
+
+/* ── FEATURES ── */
+#features{
+  position:relative;z-index:1;
+  padding:100px 5%;
+}
+.section-tag{
+  font-size:11px;color:var(--p);font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;text-align:center;margin-bottom:14px;
+}
+.section-title{
+  font-size:clamp(28px,4vw,48px);font-weight:900;text-align:center;
+  line-height:1.1;margin-bottom:60px;letter-spacing:-0.5px;
+}
+.section-title em{font-style:normal;
+  background:linear-gradient(135deg,var(--p),var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.features-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;max-width:1100px;margin:0 auto;
+}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:28px;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.feat-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0% 0%,rgba(0,229,255,0.05) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.feat-card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.feat-card:hover::before{opacity:1;}
+.feat-icon{
+  font-size:36px;margin-bottom:16px;display:block;
+  filter:drop-shadow(0 0 12px rgba(0,229,255,0.3));
+}
+.feat-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:10px;}
+.feat-desc{font-size:14px;color:var(--text2);line-height:1.7;}
+
+/* ── DOWNLOAD ── */
+#download{
+  position:relative;z-index:1;padding:100px 5%;
+  text-align:center;
+}
+.dl-wrap{
+  max-width:680px;margin:0 auto;
+  background:var(--card);border:1px solid rgba(0,229,255,0.2);
+  border-radius:32px;padding:60px 40px;
+  position:relative;overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,0.4);
+}
+.dl-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,0.07) 0%,transparent 60%);
+}
+.dl-crown{font-size:64px;display:block;margin-bottom:20px;filter:drop-shadow(0 0 30px rgba(255,171,0,0.5));animation:floatCrown 3s ease-in-out infinite;}
+@keyframes floatCrown{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.dl-title{font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:12px;line-height:1.1;}
+.dl-sub{font-size:15px;color:var(--text2);margin-bottom:36px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto;}
+.dl-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--p),#0094aa);
+  color:#000;font-size:17px;font-weight:900;
+  padding:18px 40px;border-radius:16px;text-decoration:none;
+  box-shadow:0 10px 40px rgba(0,229,255,0.5);
+  transition:all 0.2s;letter-spacing:0.3px;
+  position:relative;z-index:1;
+}
+.dl-btn:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(0,229,255,0.65);}
+.dl-btn:active{transform:scale(0.98);}
+.dl-info{margin-top:16px;font-size:12px;color:var(--text2);position:relative;z-index:1;}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:1;
+  background:var(--card);border-top:1px solid var(--border);
+  padding:40px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-size:16px;font-weight:900;
+  background:linear-gradient(135deg,var(--p),var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:600;transition:color 0.2s;}
+.footer-links a:hover{color:var(--p);}
+.footer-copy{font-size:12px;color:var(--text2);width:100%;text-align:center;padding-top:12px;border-top:1px solid var(--border);}
+
+/* ANIMATIONS */
+@keyframes fadeDown{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes floatUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 4%;}
+  .nav-links{display:none;}
+  #hero{padding:88px 5% 60px;}
+  .hero-title{font-size:clamp(36px,10vw,64px);}
+  .stat-item{min-width:120px;}
+  .dl-wrap{padding:40px 24px;}
+  footer{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">📚 Super Sınaq</div>
+  <div class="nav-links">
+    <a href="#features">Xüsusiyyətlər</a>
+    <a href="#download">Yüklə</a>
+    <a href="privacy-policy.html">Məxfilik</a>
+  </div>
+  <a href="https://supersinaq.github.io/supersinaq.apk" class="nav-dl">⬇ APK Yüklə</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="glow-ring glow-ring-1"></div>
+  <div class="glow-ring glow-ring-2"></div>
+  <div class="glow-ring glow-ring-3"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Azərbaycanca Test Platforması
+  </div>
+
+  <h1 class="hero-title">
+    <span>Super Sınaq</span>
+  </h1>
+  <p class="hero-sub">Biliklərini sına. Kəşf et. İnkişaf et.<br>Yüzlərlə test, real-time rəqabət, premium məzmun — hamısı cibinizdə.</p>
+
+  <div class="hero-btns">
+    <a href="https://supersinaq.github.io/supersinaq.apk" class="btn-main">
+      <span>⬇</span> APK Yüklə
+    </a>
+    <a href="#features" class="btn-ghost">Ətraflı öyrən →</a>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-phone">
+      <div class="mockup-notch"></div>
+      <div class="mockup-logo">Super Sınaq</div>
+      <div class="mockup-sub">Test Platforması</div>
+      <div class="mockup-card">
+        <div class="mockup-card-icon">📐</div>
+        <div class="mockup-card-bar">
+          <div class="mockup-card-title">Riyaziyyat Testi</div>
+          <div class="mockup-card-meta">40 sual · 30 dəq</div>
+          <div class="mockup-card-prog"><div class="mockup-card-prog-fill" style="width:72%"></div></div>
+        </div>
+      </div>
+      <div class="mockup-card">
+        <div class="mockup-card-icon">🌍</div>
+        <div class="mockup-card-bar">
+          <div class="mockup-card-title">Coğrafiya Testi</div>
+          <div class="mockup-card-meta">25 sual · 20 dəq</div>
+          <div class="mockup-card-prog"><div class="mockup-card-prog-fill" style="width:45%;background:linear-gradient(90deg,#7c4dff,#ff6b35)"></div></div>
+        </div>
+      </div>
+      <div class="mockup-card" style="margin-bottom:14px;">
+        <div class="mockup-card-icon">👑</div>
+        <div class="mockup-card-bar">
+          <div class="mockup-card-title" style="color:#ffab00;">Premium Test</div>
+          <div class="mockup-card-meta">60 sual · 45 dəq</div>
+          <div class="mockup-card-prog"><div class="mockup-card-prog-fill" style="width:88%;background:linear-gradient(90deg,#ffab00,#ff6b35)"></div></div>
+        </div>
+      </div>
+      <div class="mockup-stats">
+        <div class="mockup-stat">
+          <div class="mockup-stat-num">94%</div>
+          <div class="mockup-stat-label">Ən yaxşı</div>
+        </div>
+        <div class="mockup-stat">
+          <div class="mockup-stat-num" style="color:#7c4dff;">47</div>
+          <div class="mockup-stat-label">Test edildi</div>
+        </div>
+        <div class="mockup-stat">
+          <div class="mockup-stat-num" style="color:#00e676;">🏆</div>
+          <div class="mockup-stat-label">Çempion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Test Sualı</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">50+</div>
+    <div class="stat-label">Test Kateqoriyası</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">10K+</div>
+    <div class="stat-label">İstifadəçi</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">4.8★</div>
+    <div class="stat-label">Ortalama Reytinq</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-tag">Niyə Super Sınaq?</div>
+  <h2 class="section-title reveal">Hər şey bir <em>tətbiqdə</em></h2>
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <span class="feat-icon">⚡</span>
+      <div class="feat-title">Real-Time Testlər</div>
+      <div class="feat-desc">Suallar Firebase vasitəsilə real-time yüklənir. Admin yeni sual əlavə etdikdə siz dərhal görürsünüz — heç bir yeniləmə tələb olunmur.</div>
+    </div>
+    <div class="feat-card reveal">
+      <span class="feat-icon">🎯</span>
+      <div class="feat-title">Dəqiq Statistika</div>
+      <div class="feat-desc">Hər testin nəticəsi, keçmişiniz, ən yaxşı ballarınız — hamısı ətraflı statistika ilə izlənir. Tərəqqinizi izləyin.</div>
+    </div>
+    <div class="feat-card reveal">
+      <span class="feat-icon">👑</span>
+      <div class="feat-title">Premium Məzmun</div>
+      <div class="feat-desc">Premium abunəliklə xüsusi testlərə, daha çox suala və reklamlarsız təcrübəyə çıxış əldə edin. Aylıq və ya illik plan seçin.</div>
+    </div>
+    <div class="feat-card reveal">
+      <span class="feat-icon">🔀</span>
+      <div class="feat-title">Ağıllı Qarışdırma</div>
+      <div class="feat-desc">Suallar və cavab variantları hər dəfə fərqli sıralanır. Əzbərləmə yox, həqiqi öyrənmə!</div>
+    </div>
+    <div class="feat-card reveal">
+      <span class="feat-icon">🌙</span>
+      <div class="feat-title">İşıq / Qaranlıq Rejim</div>
+      <div class="feat-desc">Gözlərini qoru. Gecə oxuyursan? Qaranlıq rejim aktiv et. Gündüz? Ağ rejimə keç. Bir toxunuşla.</div>
+    </div>
+    <div class="feat-card reveal">
+      <span class="feat-icon">📡</span>
+      <div class="feat-title">Oflayn Dəstəyi</div>
+      <div class="feat-desc">Məlumatlar lokal saxlanılır. İnternet bağlantısı olmadan da əvvəlcədən yüklənmiş testləri həll edə bilərsiniz.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="dl-wrap reveal">
+    <span class="dl-crown">📚</span>
+    <h2 class="dl-title">İndi Yüklə, Pulsuz Başla</h2>
+    <p class="dl-sub">Super Sınaq-ı Android cihazına yüklə. Qeydiyyat tələb olunmur — açıb dərhal istifadə et!</p>
+    <a href="https://supersinaq.github.io/supersinaq.apk" class="dl-btn">
+      ⬇ &nbsp;APK Yüklə (Android)
+    </a>
+    <div class="dl-info">✓ Pulsuz · ✓ Reklamsız başlanğıc · ✓ Azerbaycanca</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">📚 Super Sınaq</div>
+  <div class="footer-links">
+    <a href="#features">Xüsusiyyətlər</a>
+    <a href="#download">Yüklə</a>
+    <a href="privacy-policy.html">Məxfilik Siyasəti</a>
+    <a href="app-ads.txt">app-ads.txt</a>
+  </div>
+  <div class="footer-copy">© 2025 Super Sınaq — Azərbaycanın Ən Yaxşı Test Platforması</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animated counters
+function animateCount(el, target, suffix='') {
+  const start = performance.now();
+  const duration = 1800;
+  const isK = target >= 1000;
+  const disp = isK ? target/1000 : target;
+  const suffixFull = isK ? 'K+' : suffix;
+  el.addEventListener('animstart', ()=>{}, {once:true});
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(eased * (isK ? disp : target));
+    el.textContent = (isK ? val + suffixFull : val + suffix);
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+// Trigger counters when stats come into view
+const statNums = document.querySelectorAll('.stat-num');
+const statTargets = [500, 50, 10000, null]; // null = skip (star rating)
+const statSuffixes = ['+', '+', '', ''];
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const idx = [...statNums].indexOf(e.target);
+      if (statTargets[idx] !== null) {
+        animateCount(e.target, statTargets[idx], statSuffixes[idx]);
+      }
+      statObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+statNums.forEach(el => statObs.observe(el));
+</script>
+</body>
+</html>
