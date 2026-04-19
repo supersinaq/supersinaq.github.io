@@ -2,7 +2,4 @@
 # https://supersinaq.github.io/app-ads.txt
 # IAB Tech Lab App-ads.txt Specification
 
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-admob.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-unity3d.com, 1234567, DIRECT
-applovin.com, 1234567890abcdef, DIRECT, 1a2b3c4d5e6f7890
+inmobi.com, YOUR_INMOBI_PUBLISHER_ID, DIRECT
