@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Məxfilik Siyasəti — Super Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00e5ff;
+  --accent: #7c4dff;
+  --bg: #050a14;
+  --card: #0d1b33;
+  --text: #e8f4fd;
+  --text2: #8bacc8;
+  --border: rgba(0,229,255,0.15);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Exo 2', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+body::before {
+  content:'';position:fixed;inset:0;
+  background-image: linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0;
+}
+.container { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--primary); text-decoration: none; font-size: 14px; font-weight: 600;
+  padding: 10px 18px; border: 1px solid var(--border); border-radius: 10px;
+  background: var(--card); margin-bottom: 32px; transition: all 0.2s;
+}
+.back-btn:hover { border-color: var(--primary); background: rgba(0,229,255,0.08); }
+h1 {
+  font-size: 28px; font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 8px;
+}
+.date { font-size: 12px; color: var(--text2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 32px; }
+.section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px; margin-bottom: 16px;
+}
+.section h2 {
+  font-size: 15px; font-weight: 800; color: var(--primary);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+}
+.section p, .section li {
+  font-size: 14px; color: var(--text2); line-height: 1.8;
+}
+.section ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.footer { text-align: center; margin-top: 40px; font-size: 12px; color: var(--text2); }
+.footer a { color: var(--primary); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back-btn">← Ana Səhifəyə Qayıt</a>
+  <h1>🔒 Məxfilik Siyasəti</h1>
+  <div class="date">Son yenilənmə: İyun 2025</div>
+
+  <div class="section">
+    <h2>1. 📋 Giriş</h2>
+    <p>Super Sınaq tətbiqini istifadə edərək bu Məxfilik Siyasətini qəbul etmiş sayılırsınız. Bu siyasət sizin məlumatlarınızın necə toplandığını, istifadə olunduğunu və qorunduğunu izah edir.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. 📊 Toplanan Məlumatlar</h2>
+    <p>Tətbiq aşağıdakı məlumatları toplaya bilər:</p>
+    <ul style="margin-top:10px;">
+      <li>İstifadəçi adı (könüllü olaraq)</li>
+      <li>Test nəticələri və tərəqqi məlumatları</li>
+      <li>Tətbiq istifadə statistikası (anonimdir)</li>
+      <li>Cihaz məlumatları (OS versiyası, cihaz modeli)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. 🎯 Məlumatların İstifadəsi</h2>
+    <p>Toplanan məlumatlar yalnız aşağıdakı məqsədlər üçün istifadə olunur:</p>
+    <ul style="margin-top:10px;">
+      <li>Tətbiq funksionallığının təmin edilməsi</li>
+      <li>İstifadəçi təcrübəsinin yaxşılaşdırılması</li>
+      <li>Texniki problemlərin həlli</li>
+      <li>Test statistikasının hesablanması</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. 🔥 Firebase</h2>
+    <p>Tətbiq Google Firebase xidmətindən istifadə edir. Məlumatlar Firebase Realtime Database-də şifrəli şəkildə saxlanılır. Firebase-in məxfilik siyasəti: <a href="https://firebase.google.com/support/privacy" style="color:var(--primary);">firebase.google.com/support/privacy</a></p>
+  </div>
+
+  <div class="section">
+    <h2>5. 📢 Reklamlar</h2>
+    <p>Tətbiq üçüncü tərəf reklam xidmətlərindən (Google AdMob, Unity Ads) istifadə edə bilər. Bu xidmətlər öz məxfilik siyasətlərinə tabedir. Reklamlar anonim istifadəçi davranışına əsaslanır.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. 👑 Premium Ödənişlər</h2>
+    <p>Premium abunəlik üçün ödəniş məlumatları bizdə saxlanılmır. Bütün ödəniş əməliyyatları Google Play-in təhlükəsiz sistemləri vasitəsilə həyata keçirilir. İstədiyiniz vaxt abunəliyi ləğv edə bilərsiniz.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. 👶 Uşaqların Məxfiliyi</h2>
+    <p>Tətbiq 13 yaşdan kiçik uşaqlardan şüurlu şəkildə məlumat toplamır. Əgər belə bir haldan xəbərdar olsanız, bizimlə dərhal əlaqə saxlayın.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. 🔐 Məlumat Təhlükəsizliyi</h2>
+    <p>Məlumatlarınızı icazəsiz giriş, dəyişiklik və ya məhvdən qorumaq üçün standart sənaye təhlükəsizlik tədbirlərindən istifadə edirik. Lakin internetdə heç bir ötürmə metodu 100% təhlükəsiz deyil.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. 🔄 Dəyişikliklər</h2>
+    <p>Bu məxfilik siyasəti istənilən vaxt yenilənə bilər. Mühüm dəyişikliklər tətbiq daxilində elan ediləcəkdir. Tətbiqdən davamlı istifadə yeni şərtlərin qəbulunu bildirir.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. 📬 Əlaqə</h2>
+    <p>Məxfilik siyasəti ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın: <a href="mailto:supersinaq@gmail.com" style="color:var(--primary);">supersinaq@gmail.com</a></p>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Super Sınaq · <a href="index.html">Ana Səhifə</a> · <a href="privacy-policy.html">Məxfilik</a></p>
+  </div>
+</div>
+</body>
+</html>
