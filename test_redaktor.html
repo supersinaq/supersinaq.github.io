@@ -116,6 +116,53 @@
     cursor: pointer; font-family: Arial, sans-serif;
   }
   .paste-area .btn-ok { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+  .edit-btn {
+    font-size: 12px; padding: 5px 12px; border-radius: 7px;
+    border: 1px solid #ccc; background: transparent;
+    color: #555; cursor: pointer; white-space: nowrap;
+    font-family: Arial, sans-serif; margin-right: 4px;
+  }
+  .edit-btn:hover { background: #eaf3de; color: #3b6d11; border-color: #97c459; }
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.35); z-index: 1000;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 12px; padding: 24px 28px;
+    width: 95%; max-width: 560px; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+  .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .modal label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; margin-top: 12px; }
+  .modal textarea, .modal input[type=text] {
+    width: 100%; padding: 8px 10px; font-size: 13px;
+    border: 1px solid #ccc; border-radius: 8px;
+    font-family: Arial, sans-serif; color: #1a1a1a;
+    box-sizing: border-box;
+  }
+  .modal textarea { resize: vertical; }
+  .modal .opt-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  .modal .opt-row input[type=text] { flex: 1; margin: 0; }
+  .modal .opt-row label {
+    font-size: 13px; color: #333; margin: 0; min-width: 28px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .modal .opt-row input[type=radio] { margin: 0; accent-color: #3b6d11; }
+  .modal-btns { display: flex; gap: 8px; margin-top: 18px; justify-content: flex-end; }
+  .modal-btns button {
+    font-size: 13px; padding: 7px 18px; border-radius: 8px;
+    border: 1px solid #ccc; background: #f5f5f0;
+    cursor: pointer; font-family: Arial, sans-serif;
+  }
+  .modal-btns .btn-save { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-weight: 600; }
+  .modal-btns .btn-save:hover { background: #333; }
+  .opts-section { margin-top: 4px; }
+  .opts-section .opts-label { font-size: 12px; color: #666; margin-bottom: 6px; display: block; }
+  .correct-hint { font-size: 11px; color: #888; margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -144,6 +191,24 @@
   </div>
 
   <div id="content"></div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>✏️ Sualı redaktə et</h3>
+    <label>Sual mətni</label>
+    <textarea id="edit-q" rows="3"></textarea>
+    <div class="opts-section">
+      <span class="opts-label" style="margin-top:12px;">Cavab variantları — düzgün cavabı seçin</span>
+      <div id="edit-opts"></div>
+    </div>
+    <p class="correct-hint">Düzgün cavabın yanındakı dairəni seçin</p>
+    <div class="modal-btns">
+      <button id="modal-cancel">Ləğv et</button>
+      <button class="btn-save" id="modal-save">Yadda saxla</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -202,6 +267,7 @@ function render() {
     html += `</div>
         <div class="ans-label">Düzgün cavab: <b>${escHtml(q.ans)}</b></div>
       </div>
+      <button class="edit-btn" onclick="openEdit(${q.n})">✏️ Redaktə</button>
       <button class="remove-btn${rem ? ' restore' : ''}" onclick="toggleRemove(${q.n})">${rem ? '♻️ Bərpa et' : '🗑 Sil'}</button>
     </div>`;
   });
@@ -291,6 +357,75 @@ document.getElementById('remove-all-btn').addEventListener('click', () => {
 
 document.getElementById('restore-all-btn').addEventListener('click', () => {
   removed.clear();
+  render();
+});
+
+let editingN = null;
+
+function openEdit(n) {
+  const q = questions.find(x => x.n === n);
+  if (!q) return;
+  editingN = n;
+  document.getElementById('edit-q').value = q.q;
+
+  const optsDiv = document.getElementById('edit-opts');
+  optsDiv.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const letter = opt.split(')')[0].trim();
+    const isCorrect = letter === q.ans;
+    const afterParen = opt.includes(')') ? opt.split(')').slice(1).join(')').trim() : opt;
+    const row = document.createElement('div');
+    row.className = 'opt-row';
+    row.innerHTML = `
+      <label>
+        <input type="radio" name="edit-ans" value="${escHtml(letter)}" ${isCorrect ? 'checked' : ''}>
+        ${escHtml(letter)})
+      </label>
+      <input type="text" value="${escHtml(afterParen)}" data-idx="${i}" data-letter="${escHtml(letter)}">
+    `;
+    optsDiv.appendChild(row);
+  });
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('edit-q').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  editingN = null;
+}
+
+document.getElementById('modal-cancel').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.getElementById('modal-save').addEventListener('click', () => {
+  if (editingN === null) return;
+  const qi = questions.findIndex(x => x.n === editingN);
+  if (qi === -1) return;
+
+  const newQ = document.getElementById('edit-q').value.trim();
+  if (!newQ) { alert('Sual mətni boş ola bilməz.'); return; }
+
+  const checkedAns = document.querySelector('input[name="edit-ans"]:checked');
+  if (!checkedAns) { alert('Düzgün cavabı seçin.'); return; }
+  const newAns = checkedAns.value;
+
+  const inputs = document.querySelectorAll('#edit-opts input[type=text]');
+  const newOpts = [];
+  for (const inp of inputs) {
+    const letter = inp.dataset.letter;
+    const val = inp.value.trim();
+    if (!val) { alert(`${letter}) variantı boş ola bilməz.`); return; }
+    newOpts.push(`${letter}) ${val}`);
+  }
+
+  questions[qi].q = newQ;
+  questions[qi].opts = newOpts;
+  questions[qi].ans = newAns;
+
+  closeModal();
   render();
 });
 
